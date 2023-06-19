@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Todo App</title>
+</head>
+<body>
+    <input type="text" id="text-input"/> 
+    <input type="date" id="date-input"/> 
+    <button onclick="addTodo()">Add Todo</button>
+    <div id="todos-div"></div>
+
+    <script>
+
+        let todos = [];
+
+        function addTodo(){
+            let textInput = document.getElementById('text-input').value;
+            todos.push(textInput);
+            let todosDiv = document.getElementById('todos-div').innerText = '';
+            render();
+        }
+
+        function render(){
+            todos.forEach(function(item){
+                
+                let todoList = document.createElement('div');
+                todoList.innerText = item;
+                let todosDiv = document.getElementById('todos-div');
+                todosDiv.appendChild(todoList);
+            })
+        }
+    </script>
+</body>
+</html>
