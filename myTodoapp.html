@@ -19,20 +19,32 @@
         function addTodo(){
             let textInput = document.getElementById('text-input').value;
             let dateInput = document.getElementById('date-input').value;
-            todos.push({todoTitle:textInput, todoDate:dateInput});
-            console.log(todos);
+            let idInput = new Date().getTime();
+            todos.push({todoTitle:textInput, todoDate:dateInput, todoId:idInput});
             let todosDiv = document.getElementById('todos-div').innerText = '';
             render();
         }
 
         function render(){
             todos.forEach(function(item){
+                let deleteButton = document.createElement('button');
+                deleteButton.innerText = 'Delete';
+                deleteButton.style = 'margin-left : 12px';
+                deleteButton.onclick = deleteTodo;
+
                 let todoList = document.createElement('div');
                 todoList.innerText = item.todoTitle + ' ' + item.todoDate;
+                todoList.appendChild(deleteButton);
+
                 let todosDiv = document.getElementById('todos-div');
                 todosDiv.appendChild(todoList);
             })
         }
+
+        function deleteTodo(){
+            
+        }
+        
     </script>
 </body>
 </html>
