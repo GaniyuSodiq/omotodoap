@@ -19,8 +19,10 @@
         function addTodo(){
             let textInput = document.getElementById('text-input').value;
             let dateInput = document.getElementById('date-input').value;
-            let idInput = new Date().getTime();
+            let idInput = '' + new Date().getTime();
+
             todos.push({todoTitle:textInput, todoDate:dateInput, todoId:idInput});
+
             let todosDiv = document.getElementById('todos-div').innerText = '';
             render();
         }
@@ -31,6 +33,7 @@
                 deleteButton.innerText = 'Delete';
                 deleteButton.style = 'margin-left : 12px';
                 deleteButton.onclick = deleteTodo;
+                deleteButton.id = item.todoId;
 
                 let todoList = document.createElement('div');
                 todoList.innerText = item.todoTitle + ' ' + item.todoDate;
@@ -41,10 +44,22 @@
             })
         }
 
-        function deleteTodo(){
-            
-        }
         
+        function deleteTodo(event){
+            const deleteBtn = event.target.id;
+            todos = todos.filter(function(todo){
+                if (todo.idInput === deleteBtn){
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+
+            render();
+        }
+
+                       
+
     </script>
 </body>
 </html>
